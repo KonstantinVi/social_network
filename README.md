@@ -132,10 +132,10 @@ pip install -r requirements
 
 В разработке.
 
-[Документация api version 1](_project_doc/api_v1.md)
-[Структура Проекта](_project_doc/project_structure.md)
-[FAQ](_project_doc/FAQ.md)
-[Журнал внесённых изменений](_project_doc/project_structure.md)
++ [Документация api version 1](_project_doc/api_v1.md)
++ [Структура Проекта](_project_doc/project_structure.md)
++ [FAQ](_project_doc/FAQ.md)
++ [Журнал внесённых изменений](_project_doc/project_structure.md)
 
 <br>
 
