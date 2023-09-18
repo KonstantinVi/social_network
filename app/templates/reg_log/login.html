@@ -1,0 +1,76 @@
+{% extends 'base/base_template.html' %}
+
+{% block title %} Вход в систему {% endblock %}
+
+{% block content %}
+
+<br>
+<p class="form-label fs-3 font-monospace">Вход в систему</p>
+<hr>
+<div class="container mt-2">
+
+    <!-- flash сообщения -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="flash-message alert alert-{{ category }} custom-alert">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- ФОРМА -->
+    <form method="POST">
+        {{ form.csrf_token }}
+
+        <!-- USERNAME -->
+        {{ form.user_login.label(class="form-label fs-5 font-monospace") }}
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-5">
+                <p>{{ form.user_login(class="form-control", placeholder="Введите свой e-mail", title="Введите свой E-mail", autofocus=true) }}
+                    {% if form.user_login.errors %}
+                        {% for e in form.user_login.errors %}
+                            <p class="alert alert-danger custom-alert">
+                                {{ e }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <!-- PASSWORD -->
+        {{ form.user_pass.label(class="form-label fs-5 font-monospace") }}
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-5">
+                <p>{{ form.user_pass(class="form-control", placeholder="Введите свой пароль", title="Введите свой пароль") }}
+                    {% if form.user_pass.errors %}
+                        {% for e in form.user_pass.errors %}
+                            <p class="alert alert-danger custom-alert">
+                                {{ e }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <!-- SAVE ME -->
+        <p>{{ form.user_save() }} {{ form.user_save.label() }}</p>
+
+        <!-- SUBMIT -->
+        <div class="row">
+            <div class="col-md-6 col-lg-">
+                <p>
+                    {{ form.submit_log(class="btn btn-success btn-block font-monospace col-sm-5 col-md-5 col-lg-4 col-xl-5", title="Это КНОПКА, чтобы Действовать!") }}
+                    <button type="button" class="btn btn-secondary btn-block font-monospace", title="Хочу Зарегистрироваться!" onclick="location.href='{{ tmp_url }}'">Зарегистрироваться</button>
+                </p>
+            </div>
+        </div>
+
+        <!-- RECOVERY -->
+        <p>Напомнить данные входа | <a href="{{ url_for('pass_recovery_') }}">Восстановить</a></p>
+
+    </form>
+</div>
+
+{% endblock %}

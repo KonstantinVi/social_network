@@ -1,0 +1,20 @@
+
+#gray_background {
+    background-color: #fafafa;
+}
+
+
+#full_gray_background {
+    background-color: #f1f1f1;
+    margin-top: 65px;
+}
+
+.nav_button:hover {
+    background-color: #e1e1e1;
+}
+
+.custom-alert {
+    height: 35px; /* or whatever height you prefer */
+    display: flex;
+    align-items: center; /* to vertically center the text/content */
+}

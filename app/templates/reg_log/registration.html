@@ -1,0 +1,88 @@
+{% extends '/base/base_template.html' %}
+
+{% block title %} Регистрация {% endblock %}
+
+{% block content %}
+
+<br>
+<p class="form-label fs-3 font-monospace">Форма регистрации</p>
+<hr>
+<div class="container mt-2">
+
+    <!-- flash сообщения -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="flash-message alert alert-{{ category }} custom-alert">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- ФОРМА -->
+    <form method="POST">
+        {{ form.csrf_token }}
+
+        <!-- USERNAME -->
+        {{ form.user_login.label(class="form-label fs-5 font-monospace") }}
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-5">
+                <p>{{ form.user_login(class="form-control", placeholder="Введите свой e-mail", title="Введите свой E-mail", autofocus=true) }}
+                    {% if form.user_login.errors %}
+                        {% for e in form.user_login.errors %}
+                            <p class="alert alert-danger custom-alert">
+                                {{ e }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <!-- PASSWORD -->
+        {{ form.user_pass.label(class="form-label fs-5 font-monospace") }}
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-5">
+                <p>{{ form.user_pass(class="form-control", placeholder="Введите свой пароль", title="Введите свой пароль") }}
+                    {% if form.user_pass.errors %}
+                        {% for e in form.user_pass.errors %}
+                            <p class="alert alert-danger custom-alert">
+                                {{ e }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        {{ form.user_conf_pass.label(class="form-label fs-5 font-monospace") }}
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-5">
+                <p>{{ form.user_conf_pass(class="form-control", placeholder="Повторите свой пароль", title="Повторите свой пароль") }}
+                    {% if form.user_conf_pass.errors %}
+                        {% for e in form.user_conf_pass.errors %}
+                            <p class="alert alert-danger custom-alert">
+                                {{ e }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <!-- SAVE ME -->
+        <p>{{ form.user_save() }} {{ form.user_save.label() }}</p>
+
+        <!-- SUBMIT -->
+        <div class="row">
+            <div class="col-md-6 col-lg-">
+                <p>
+                    {{ form.submit_reg(class="btn btn-success btn-block font-monospace col-sm-8 col-md-12 col-lg-8 col-xl-6", title="Это КНОПКА, чтобы Действовать!") }}
+                </p>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

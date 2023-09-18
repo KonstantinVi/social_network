@@ -1,0 +1,101 @@
+{% extends 'base/base_template.html' %}
+
+{% block title %} Форма обратной связи {% endblock %}
+
+{% block content %}
+
+<br>
+<p class="form-label fs-3 font-monospace">Форма обратной связи</p>
+<hr>
+<div class="container mt-2">
+
+    <!-- flash сообщения -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="flash-message alert alert-{{ category }} custom-alert">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- ФОРМА -->
+    <form action="" method="POST">
+        {{ form.csrf_token }}
+
+        <!-- USER FIRST NAME -->
+        {{ form.user_first_name.label(class="form-label fs-5 font-monospace") }}
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-5">
+                <p>{{ form.user_first_name(class="form-control", placeholder="Введите своё Имя", title="Введите своё Имя", autofocus=true) }}
+                    {% if form.user_first_name.errors %}
+                        {% for e in form.user_first_name.errors %}
+                            <p class="alert alert-danger custom-alert">
+                                {{ e }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <!-- USER LAST NAME -->
+        {{ form.user_last_name.label(class="form-label fs-5 font-monospace") }}
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-5">
+                <p>{{ form.user_last_name(class="form-control", placeholder="Введите свою Фамилию", title="Введите свою Фамилию") }}
+                    {% if form.user_last_name.errors %}
+                        {% for e in form.user_last_name.errors %}
+                            <p class="alert alert-danger custom-alert">
+                                {{ e }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <!-- USER E-MAIL -->
+        {{ form.user_login.label(class="form-label fs-5 font-monospace") }}
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-5">
+                <p>{{ form.user_login(class="form-control", placeholder="Введите свой e-mail", title="Введите свой e-mail") }}
+                    {% if form.user_login.errors %}
+                        {% for e in form.user_login.errors %}
+                            <p class="alert alert-danger custom-alert">
+                                {{ e }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <!-- USER TEXT -->
+        {{ form.user_message.label(class="form-label fs-5 font-monospace") }}
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-5">
+                <p>{{ form.user_message(class="form-control", placeholder="Введите текст ...", title="Введите текст ...", rows="10") }}
+                    {% if form.user_message.errors %}
+                        {% for e in form.user_message.errors %}
+                            <p class="alert alert-danger custom-alert">
+                                {{ e }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="row">
+            <div class="col-md-6 col-lg-">
+                <p>
+                    {{ form.submit_int(class="btn btn-success btn-block font-monospace col-sm-8 col-md-12 col-lg-8 col-xl-6", title="Это КНОПКА, чтобы Действовать!") }}
+                </p>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

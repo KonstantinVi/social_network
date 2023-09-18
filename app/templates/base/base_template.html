@@ -1,0 +1,40 @@
+<!-- ver.: 1.0. | 10.08.2023 08:10 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html"/>
+    <meta name="description" content="Описание данной страницы. Разработка на Flask!"/>
+    <meta name="keywords" content="flask, web, development"/> <!-- Ключевые слова для поисковика -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    {% include 'base/css_head_module.html' %}
+    {% block css_head %}{% endblock %}
+
+    {% include 'base/js_head_module.html' %}
+    {% block js_head %}{% endblock %}
+
+</head>
+<body>
+
+{% include 'base/page_header.html' %}
+
+<div class="container-fluid vh-100" id="full_gray_background">
+    <div class="container vh-100" id="gray_background">
+
+        {% block content %}{% endblock %}
+
+    </div>
+</div>
+
+{% include 'base/page_footer.html' %}
+
+{% block js_footer %}{% endblock %}
+
+{% include 'base/js_footer_module.html' %}
+
+</body>
+</html>

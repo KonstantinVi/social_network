@@ -1,0 +1,18 @@
+{% extends 'base/base_template.html' %}
+
+{% block title %} Первая страница {% endblock %}
+
+{% block content %}
+<br>
+<div class="alert alert-warning" role="alert">
+    Главная страница
+    <hr>
+    <p>Данные из DB</p>
+    {% for m in name %}
+        <b>"{{ m.title }}"</b>
+        {{ m.url }}<br>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
